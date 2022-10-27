@@ -13,11 +13,21 @@ const apiKey = 'somekey';
 // -------------------------------------------------
 // Example API call:
 // http://localhost:3001/api/weather?city=los%20angeles&state=ca
-app.get('/api/weather', (request, response) => {
+app.get('/api/weather', async (request, response) => {
   const city = (request.query.city).toLowerCase();
   const state = (request.query.state).toLowerCase();
-  axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},${state},us&appid=${apiKey}`)
-    .then(res => response.json(res.data));
+  const returnedWeatherData = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},${state},us&appid=${apiKey}`);
+  
+  const actualResponse = {};
+  actualResponse['city'] = returnedWeatherData.data.name;
+  actualResponse['state'] = state.toUpperCase();
+  actualResponse['country'] = returnedWeatherData.data.sys.country;
+  actualResponse['temperature'] = returnedWeatherData.data.main.temp;
+  actualResponse['humidity'] = returnedWeatherData.data.main.humidity;
+  actualResponse['condition'] = returnedWeatherData.data.weather[0].description;
+  actualResponse['pressure'] = returnedWeatherData.data.main.pressure;
+
+  response.json(actualResponse);
 });
 
 const PORT = 3001;
