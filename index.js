@@ -4,7 +4,7 @@ const app = express();
 
 app.use(express.json());
 
-const apiKey = 'a2813bf7a97824733c620ca3696826b4';
+const apiKey = 'somekey';
 
 // If there is a 'space' in the name, use URL encoding of 'space', which is %20.
 // For example, "Los Angeles" -> "Los%20Angeles".
