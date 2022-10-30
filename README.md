@@ -30,3 +30,6 @@
   "pressure": 1017
 }
 ```
+
+## UML Diagram
+![UML Diagram For Microservice](https://github.com/eyc94/weather-microservice/blob/main/images/Weather%20Microservice%20UML%20Diagram.png)
