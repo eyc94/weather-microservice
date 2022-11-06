@@ -1,8 +1,10 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
+const cors = require('cors');
 
 app.use(express.json());
+app.use(cors());
 
 const apiKey = 'a2813bf7a97824733c620ca3696826b4';
 
